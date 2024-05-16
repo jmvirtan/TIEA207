@@ -1,0 +1,428 @@
+:root {
+  --zoom-button-state: none;
+}
+
+html {
+  background-color: #2F3136;
+}
+
+body {
+  /* Esto vaakapalkille. Ilman tätä, kun games-wrapperiin tulostetaan pelejä,
+	   niin sivulle ilmestyy vaakapalkki. Mistä johtuu? Huom. Games-wrapper osio */
+  overflow-x: hidden;
+  overflow-y: scroll;
+  scrollbar-color: #E5E5E5;
+}
+
+.App {
+  background-color: #2F3136;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.Platform {
+  text-align: center;
+  border-radius: 15px;
+  border: 3px solid #E5E5E5;
+  font-size: 14px;
+  width: 7.6em;
+  padding: 0em;
+  margin: 0em;
+  background-color: rgb(20, 97, 97);
+  justify-content: center;
+  background-image: repeating-linear-gradient(to bottom right, rgba(47, 49, 54, 0.8), rgba(64, 66, 71, 0.95) 10%, rgba(10, 10, 10, 0.99) 100%);
+  opacity: 0.5;
+  height: 4.2em;
+  cursor: pointer;
+}
+
+.Platform:hover {
+  opacity: 0.7;
+  box-shadow: 0px 1px 5px 2px #786ed3;
+  background-image: repeating-linear-gradient(to bottom right, rgba(47, 49, 54, 0.8), rgba(64, 66, 71, 0.95) 10%, rgba(40, 40, 40, 0.99) 100%);
+}
+
+.Platform-selected {
+  text-align: center;
+  font-size: 14px;  
+  width: 7.6em;
+  height: 4.2em;
+  border-radius: 15px;
+  border: 3px solid #786ed3;
+  box-shadow: 0px 1px 3px 1px #786ed3;  
+  background-image: repeating-linear-gradient(to bottom right, rgba(67, 69, 74, 0.8), rgba(84, 86, 91, 0.95) 10%, rgba(70, 70, 70, 0.99) 100%);
+}
+
+.Header {
+  display: flex;
+  position: sticky;
+  top: 0px;
+  width: 100vw;
+  padding-top: 0.5em;
+  margin: 0em;
+  justify-content: center;
+  background-image: repeating-linear-gradient(to bottom right, rgba(47, 49, 54, 0.8), rgba(64, 66, 71, 0.95) 10%, rgba(10, 10, 10, 0.99) 100%);
+  height: 4.5em;
+  z-index: 2;
+}
+
+.Header-Platforms {
+	display: flex;
+	gap: 0.5em;
+	margin-right: 5em;
+}
+
+.Header p {
+	font-size: 14px;
+}
+
+.GamerLogo {
+	height: 4.3em;
+	margin-right: 2.5em;
+  cursor: pointer;
+}
+
+.RandomizeIndicator-Faded {
+  text-align: center;
+  border-radius: 15px;
+  border: 3px solid #E5E5E5;
+  font-size: 14px;
+  width: 7.6em;
+  padding: 0em;
+  margin: 0em;
+  background-color: rgb(20, 97, 97);
+  justify-content: center;
+  background-image: repeating-linear-gradient(to bottom right, rgba(47, 49, 54, 0.8), rgba(64, 66, 71, 0.95) 10%, rgba(10, 10, 10, 0.99) 100%);
+  opacity: 0.5;
+  height: 4.2em;
+  cursor: pointer;
+}
+
+.RandomizeIndicator {
+  text-align: center;
+  font-size: 14px;  
+  pointer-events: click;
+  width: 7.6em;
+  height: 4.2em;
+  border-radius: 15px;
+  border: 3px solid #d3ab6e;
+  box-shadow: 0px 1px 3px 1px #d3ab6e;  
+  background-image: repeating-linear-gradient(to bottom right, rgba(67, 69, 74, 0.8), rgba(84, 86, 91, 0.95) 10%, rgba(70, 70, 70, 0.99) 100%);
+  cursor: default;
+}
+
+.RandomizeIndicator-Faded:hover {
+  opacity: 0.7;
+  box-shadow: 0px 1px 5px 2px #d3ab6e;
+  background-image: repeating-linear-gradient(to bottom right, rgba(47, 49, 54, 0.8), rgba(64, 66, 71, 0.95) 10%, rgba(40, 40, 40, 0.99) 100%);
+}
+
+.RandomizeIcon {
+	margin-top: 1em;
+	padding-bottom: 0.2em;
+	scale: 2.2;
+}
+
+.Info-Text {
+	animation-name: TextPulse;
+	animation-duration: 3s;
+	animation-iteration-count: infinite;
+	animation-direction: alternate;
+	margin-top: 0.5em;
+	font-size: 36px;
+}
+
+.top-to-btm{
+  position: relative;
+}
+
+.icon-position{
+  position: fixed;
+  bottom: 2.5em;
+  right: 2.5em;
+  z-index: 2;
+}
+
+.icon-style{
+  background-color: #404247;
+  border: 2px solid #fff;
+  border-radius: 25%;
+  height: 30px;
+  width: 40px;
+  color: #fff;
+  cursor: pointer;
+  scale: 1.5;
+  box-shadow: 0px 2px 5px 2px #96d36e;
+}
+
+.icon-style:hover{
+  animation: none;
+  background: #96d36e;
+  color: #fff;
+  border: 2px solid #fff;
+  box-shadow: 0px 2px 10px 4px #96d36e;
+}
+
+.Genres-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+.Genre {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  font-size: 1.1em;
+  text-shadow: 1px 1px 5px black;
+  border-radius: 50px;
+  width: 200px;
+  height: 60px;
+  padding: 0.2em;
+  margin: 0.5em;
+  background-position: 0% 35%;
+  box-shadow: 0px 6px 5px 0px #6e96d3;
+  cursor: pointer;
+}
+
+.Genre:hover {
+  border-radius: 50px;
+  background-color: #191b20;
+  box-shadow: 0px 6px 10px 2px #6e96d3;
+  transition: 0.1s;
+}
+
+.Genre-selected {
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.1em;
+  text-shadow: 1px 1px 3px black;
+  border-radius: 50px;
+  border: 8px solid #786ed3;
+  background-position: 0% 65%;  
+  width: 200px;
+  height: 60px;
+  padding: 0.2em;
+  margin: 0.1em;
+  transition: 0.1s;
+  cursor: pointer;
+}
+
+.Genres-wrapper p {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.Games-wrapper {
+  display: flex;
+  justify-content: center;
+  /* bodyn overflow-x: hidden hukkaa osan tästä! */
+  max-width: 100vw;
+}
+
+.Games-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  list-style-type: none;
+  padding: 0em;
+  margin: 2em;
+  box-shadow: 0px 0px 20px 8px #ab6ed3;
+}
+
+.Games-gallery > li {
+  height: 40vh;
+  flex-grow: 1;
+}
+
+.Games-gallery img {
+  max-height: 100%;
+  min-width: 100%;
+  object-fit: cover;
+  vertical-align: bottom;
+}
+
+.Gallery-image:hover {
+  animation: HoverZoomSmaller 1 0.1s linear;
+  transform: scale(1.05, 1.05);
+  cursor: pointer;
+}
+
+.Game-info-container {
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  z-index: 3;
+  background-image: repeating-linear-gradient(to bottom right, rgba(47, 49, 54, 0.8), rgba(64, 66, 71, 0.55) 10%, rgba(10, 10, 10, 0.65) 100%);
+}
+
+.Game-info {
+  display: flex;
+  flex-wrap: wrap;
+  position: fixed;
+  z-index: 4;
+  width: 70vw;
+  min-height: 85vh;
+  max-height: 85vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  border-radius: 10px;
+  top: 10vh;
+  background-image: repeating-linear-gradient(to bottom right, rgba(47, 49, 54, 0.8), rgba(64, 66, 71, 0.95) 10%, rgba(10, 10, 10, 0.99) 100%);
+  box-shadow: 0px 5px 20px 10px #d3ab6e;
+}
+
+.GameInfoClose {
+  transform: translate(17.5vw, 1.5vh);
+  scale: 3.5;
+  cursor: pointer;
+}
+
+.GameInfoClose:hover path {
+  fill: #d3ab6e;
+}
+
+.Game-info path {
+  fill: #E5E5E5;
+}
+
+.Cover-info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: nowrap;
+  flex-direction: column;
+}
+
+.Cover-info img {
+  height: 30vh;
+  max-width: 25vh;
+  object-fit: contain;
+  border-radius: 10px;
+  margin-left: 1.5em;
+  margin-top: 2em;
+  margin-bottom: 1em;
+}
+
+.Cover-info:hover {
+  animation: HoverZoom 1 0.1s linear;
+  transform: scale(1.1, 1.1);
+  --zoom-button-state: true;
+}
+
+.CoverZoomButton {
+  position: absolute;
+  pointer-events: none;
+  transform: translate(0.5vw, 0vh);
+  scale: 3.0;
+  display: var(--zoom-button-state);
+}
+
+.Game-info-title {
+  font-size: Medium;
+  max-width: 35vw;
+  min-width: 25vw;
+  margin-left: 2em;
+}
+
+.Game-info-text {
+  margin-left: 1em;
+  margin-right: 2em;
+  min-width: 40vw;
+}
+
+.Summary {
+  max-height: 16vh;
+  overflow-y: auto;
+  scrollbar-color: #E5E5E5;
+}
+
+.Game-info-text p {
+  margin-bottom: 0.5em;
+  margin-top: 0.5em;
+  padding-right: 1em;
+}
+
+.Game-info-text a {
+  color: #6e96d3;
+}
+
+.Game-info-screenshots {
+  display: flex;
+  justify-content: center;
+  margin-left: 1em;
+  margin-top: 1em;
+  padding-bottom: 2em;
+  width: 100%;
+  scrollbar-color: #E5E5E5;
+}
+
+.Game-info-screenshots img {
+  height: 22vh;
+  width: 20vw;
+  margin: 0em;
+  padding: 0em;
+  margin-left: 0.25em;
+  object-fit: cover;
+}
+
+.Game-info-screenshots img:hover {
+  animation: HoverZoom 1 0.1s linear;
+  transform: scale(1.1, 1.1);
+}
+
+.Youtube {
+  height: 22vh;
+  width: 30vw;
+  margin-left: 0.25em;
+}
+
+@keyframes HoverZoom {
+  from {
+    transform: scale(1, 1);
+  }
+
+  to {
+    transform: scale(1.1, 1.1);
+  }
+}
+
+@keyframes HoverZoomSmaller {
+  from {
+    transform: scale(1, 1);
+  }
+
+  to {
+    transform: scale(1.05, 1.05);
+  }
+}
+
+@keyframes TextPulse {
+  from {
+    text-shadow: #d3ab6e 1px 0 12px;
+  }
+
+  50% {
+    text-shadow: #96d36e 1px 0 15px;	  
+  }
+  
+  to {
+    text-shadow: #ab6ed3 1px 0 18px;
+  }
+}
